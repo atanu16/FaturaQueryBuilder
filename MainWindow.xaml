@@ -155,7 +155,7 @@
                             <StackPanel>
                                 <TextBlock Text="INPUT" FontSize="10" FontWeight="Bold"
                                            Foreground="{StaticResource TextMutedBrush}"
-                                           Margin="2,0,0,10" LetterSpacing="1.2"/>
+                                           Margin="2,0,0,10"/>
                                 <TextBox x:Name="InputBox"
                                          Style="{StaticResource GlassTextBox}"
                                          Height="160"
@@ -200,7 +200,7 @@
                                     <TextBlock Text="OUTPUT" FontSize="10" FontWeight="Bold"
                                                Foreground="{StaticResource TextMutedBrush}"
                                                VerticalAlignment="Center"
-                                               LetterSpacing="1.2" Margin="2,0,0,0"/>
+                                               Margin="2,0,0,0"/>
                                     <Button Grid.Column="1"
                                             Style="{StaticResource SecondaryButton}"
                                             Padding="16,8" Click="CopyBtn_Click">
