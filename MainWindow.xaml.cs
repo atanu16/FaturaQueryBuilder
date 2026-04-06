@@ -67,25 +67,15 @@ public partial class MainWindow : Window
             return;
         }
 
-        // Build the query:
-        //   1) Join lines with  ` " OR Subject : "`
-        //   2) Append trailing  ` "`
-        //   3) Strip the common "Fatura " prefix from the very start
-        //      so the result starts with the first value directly.
-
-        string joined = string.Join(" \" OR Subject : \"", lines) + " \"";
-
-        // Remove leading "Fatura " if present (first line's prefix)
-        const string prefix = "Fatura ";
-        if (joined.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-            joined = joined[prefix.Length..];
+        // Build: Subject: "line1" OR Subject: "line2" OR ...
+        string joined = string.Join(" OR ", lines.Select(l => $"Subject: \"{l}\""));
 
         OutputBox.Text = joined;
 
         // Update stats
         StatLines.Text      = lines.Length.ToString();
-        StatConditions.Text  = (lines.Length > 0 ? lines.Length - 1 : 0).ToString();
-        StatChars.Text       = joined.Length.ToString();
+        StatConditions.Text = lines.Length.ToString();
+        StatChars.Text      = joined.Length.ToString();
 
         ShowSnackbar($"✅  Query generated — {lines.Length} line(s) merged!");
     }

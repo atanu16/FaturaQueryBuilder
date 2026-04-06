@@ -8,19 +8,20 @@ A modern, stylish Windows desktop app built with **.NET 8 + WPF** that converts 
 ---
 
 ## 🎯 What It Does
+<img width="474" height="530" alt="image" src="https://github.com/user-attachments/assets/b44f5610-4829-4bc5-825f-b306985a6fbe" />
 
 Paste lines like:
 
 ```
-Fatura ABC
-Fatura XYZ
-Fatura 123
+Fatura 1234567 cliente 1234567
+Fatura 1234567 cliente 1234567
+Fatura 1234567 cliente 1234567
 ```
 
 Click **Generate Query** and get:
 
 ```
-ABC " OR Subject : "Fatura XYZ " OR Subject : "Fatura 123 "
+Subject: "Fatura 1234567 cliente 1234567" OR Subject: "Fatura 1234567 cliente 1234567" OR Subject: "Fatura 1234567 cliente 1234567"
 ```
 
 - Joins every line with `" OR Subject : "` separators
