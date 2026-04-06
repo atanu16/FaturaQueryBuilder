@@ -19,3 +19,5 @@ C:\Users\atanu\OneDrive\Desktop\QueryBuilder\obj\Debug\net8.0-windows\refint\Que
 C:\Users\atanu\OneDrive\Desktop\QueryBuilder\obj\Debug\net8.0-windows\QueryBuilder.pdb
 C:\Users\atanu\OneDrive\Desktop\QueryBuilder\obj\Debug\net8.0-windows\QueryBuilder.genruntimeconfig.cache
 C:\Users\atanu\OneDrive\Desktop\QueryBuilder\obj\Debug\net8.0-windows\ref\QueryBuilder.dll
+C:\Users\atanu\OneDrive\Desktop\QueryBuilder\bin\Debug\net8.0-windows\icon.ico
+C:\Users\atanu\OneDrive\Desktop\QueryBuilder\obj\Debug\net8.0-windows\QueryBuilder_Content.g.cs

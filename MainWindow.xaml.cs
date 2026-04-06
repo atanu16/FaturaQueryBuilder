@@ -15,6 +15,10 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         _snackTimer.Tick += (_, _) => HideSnackbar();
+
+        var iconPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "icon.ico");
+        if (System.IO.File.Exists(iconPath))
+            Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri(iconPath));
     }
 
     // ══════════════════════════════════════════════════════════════
