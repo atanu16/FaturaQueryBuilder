@@ -1,4 +1,4 @@
-# ⚡ Query Builder — Glassmorphism WPF App
+# ⚡ Fatura Query Builder — Glassmorphism WPF App
 
 A modern, stylish Windows desktop app built with **.NET 8 + WPF** that converts multi-line text into a single Outlook / Exchange subject search query.
 
