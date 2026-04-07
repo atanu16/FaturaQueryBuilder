@@ -13,6 +13,9 @@ public partial class MainWindow : Window
 
     public MainWindow()
     {
+        // Apply scale-aware resources BEFORE InitializeComponent so styles pick them up
+        ApplyScaleResources();
+
         InitializeComponent();
         _snackTimer.Tick += (_, _) => HideSnackbar();
 
@@ -20,11 +23,51 @@ public partial class MainWindow : Window
         if (System.IO.File.Exists(iconPath))
             Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri(iconPath));
 
-        // Size the window relative to the screen so it looks consistent at any resolution
+        // Size window relative to screen
         var screen = SystemParameters.WorkArea;
         Width  = Math.Max(MinWidth,  screen.Width  * 0.50);
         Height = Math.Max(MinHeight, screen.Height * 0.85);
     }
+
+    // ══════════════════════════════════════════════════════════════
+    //  SCALE RESOURCES  – compute once at startup from screen size
+    // ══════════════════════════════════════════════════════════════
+
+    private static void ApplyScaleResources()
+    {
+        var screen = SystemParameters.WorkArea;
+        // 1.0 at 1920×1080, clamped so the UI never looks too tiny or huge
+        double s = Math.Clamp(Math.Min(screen.Width / 1920.0, screen.Height / 1080.0), 0.65, 1.4);
+
+        var r = Application.Current.Resources;
+
+        // Font sizes
+        r["FontXS"]  = Rnd(10 * s);
+        r["FontSM"]  = Rnd(11 * s);
+        r["FontMD"]  = Rnd(13 * s);
+        r["FontLG"]  = Rnd(14 * s);
+        r["FontXL"]  = Rnd(20 * s);
+        r["FontXXL"] = Rnd(28 * s);
+
+        // Element sizes
+        r["AppIconSize"]  = Rnd(26 * s);
+        r["TitleBtnSize"] = Rnd(34 * s);
+
+        // Paddings
+        r["PadPanel"]      = Pad(24 * s);
+        r["PadPanelStats"] = Pad(16 * s, 12 * s);
+        r["PadTextBox"]    = Pad(14 * s, 12 * s);
+        r["PadPrimaryBtn"] = Pad(28 * s, 14 * s);
+        r["PadSecondBtn"]  = Pad(28 * s, 14 * s);
+        r["PadCopyBtn"]    = Pad(16 * s,  8 * s);
+
+        // Content area margin
+        r["ContentMargin"] = new Thickness(Rnd(28 * s), Rnd(4 * s), Rnd(28 * s), Rnd(20 * s));
+    }
+
+    private static double    Rnd(double v)                   => Math.Round(v);
+    private static Thickness Pad(double h, double v)         => new(Rnd(h), Rnd(v), Rnd(h), Rnd(v));
+    private static Thickness Pad(double uniform)             => new(Rnd(uniform));
 
     // ══════════════════════════════════════════════════════════════
     //  TITLE BAR

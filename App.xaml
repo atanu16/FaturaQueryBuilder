@@ -38,7 +38,7 @@
                 <Setter Property="BorderBrush"      Value="{StaticResource GlassBorderBrush}"/>
                 <Setter Property="BorderThickness"   Value="1"/>
                 <Setter Property="CornerRadius"      Value="16"/>
-                <Setter Property="Padding"           Value="24"/>
+                <Setter Property="Padding"           Value="{DynamicResource PadPanel}"/>
                 <Setter Property="Effect">
                     <Setter.Value>
                         <DropShadowEffect BlurRadius="40" ShadowDepth="0"
@@ -65,9 +65,9 @@
                 </Setter>
                 <Setter Property="BorderThickness"   Value="1"/>
                 <Setter Property="BorderBrush"       Value="{StaticResource GlassBorderBrush}"/>
-                <Setter Property="Padding"           Value="14,12"/>
+                <Setter Property="Padding"           Value="{DynamicResource PadTextBox}"/>
                 <Setter Property="FontFamily"        Value="Cascadia Code, Consolas, Courier New"/>
-                <Setter Property="FontSize"          Value="13"/>
+                <Setter Property="FontSize"          Value="{DynamicResource FontMD}"/>
                 <Setter Property="AcceptsReturn"     Value="True"/>
                 <Setter Property="TextWrapping"      Value="Wrap"/>
                 <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
@@ -111,9 +111,9 @@
             <Style x:Key="PrimaryButton" TargetType="Button">
                 <Setter Property="Foreground"  Value="White"/>
                 <Setter Property="FontWeight"  Value="SemiBold"/>
-                <Setter Property="FontSize"    Value="14"/>
+                <Setter Property="FontSize"    Value="{DynamicResource FontLG}"/>
                 <Setter Property="Cursor"      Value="Hand"/>
-                <Setter Property="Padding"     Value="28,14"/>
+                <Setter Property="Padding"     Value="{DynamicResource PadPrimaryBtn}"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -152,9 +152,9 @@
             <Style x:Key="SecondaryButton" TargetType="Button">
                 <Setter Property="Foreground"  Value="{StaticResource TextPrimaryBrush}"/>
                 <Setter Property="FontWeight"  Value="SemiBold"/>
-                <Setter Property="FontSize"    Value="14"/>
+                <Setter Property="FontSize"    Value="{DynamicResource FontLG}"/>
                 <Setter Property="Cursor"      Value="Hand"/>
-                <Setter Property="Padding"     Value="28,14"/>
+                <Setter Property="Padding"     Value="{DynamicResource PadSecondBtn}"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">

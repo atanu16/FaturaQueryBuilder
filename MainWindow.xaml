@@ -78,18 +78,19 @@
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
                         <!-- App icon -->
-                        <Border Width="26" Height="26" CornerRadius="7" Margin="0,0,10,0">
+                        <Border Width="{DynamicResource AppIconSize}" Height="{DynamicResource AppIconSize}"
+                                CornerRadius="7" Margin="0,0,10,0">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                     <GradientStop Color="{StaticResource AccentPurple}" Offset="0"/>
                                     <GradientStop Color="{StaticResource AccentCyan}" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.Background>
-                            <TextBlock Text="Q" FontWeight="Bold" FontSize="13"
+                            <TextBlock Text="Q" FontWeight="Bold" FontSize="{DynamicResource FontMD}"
                                        Foreground="White"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                        <TextBlock Text="Query Builder" FontSize="13" FontWeight="SemiBold"
+                        <TextBlock Text="Query Builder" FontSize="{DynamicResource FontMD}" FontWeight="SemiBold"
                                    Foreground="{StaticResource TextSecondaryBrush}"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
@@ -97,18 +98,21 @@
                     <!-- Window controls -->
                     <StackPanel Grid.Column="1" Orientation="Horizontal"
                                 VerticalAlignment="Center" Margin="0,0,10,0">
-                        <Button Style="{StaticResource IconButton}" Width="34" Height="34"
+                        <Button Style="{StaticResource IconButton}"
+                                Width="{DynamicResource TitleBtnSize}" Height="{DynamicResource TitleBtnSize}"
                                 Click="MinimizeBtn_Click" ToolTip="Minimize">
                             <TextBlock Text="─" Foreground="{StaticResource TextMutedBrush}"
-                                       FontSize="13" Margin="0,-3,0,0"/>
+                                       FontSize="{DynamicResource FontMD}" Margin="0,-3,0,0"/>
                         </Button>
-                        <Button Style="{StaticResource IconButton}" Width="34" Height="34"
+                        <Button Style="{StaticResource IconButton}"
+                                Width="{DynamicResource TitleBtnSize}" Height="{DynamicResource TitleBtnSize}"
                                 Margin="4,0,0,0" Click="MaximizeBtn_Click" ToolTip="Maximize">
                             <TextBlock Text="□" Foreground="{StaticResource TextMutedBrush}"
-                                       FontSize="14" Margin="0,-2,0,0"/>
+                                       FontSize="{DynamicResource FontLG}" Margin="0,-2,0,0"/>
                         </Button>
-                        <Button x:Name="CloseBtn" Width="34" Height="34" Cursor="Hand"
-                                Margin="4,0,0,0" Click="CloseBtn_Click" ToolTip="Close">
+                        <Button x:Name="CloseBtn"
+                                Width="{DynamicResource TitleBtnSize}" Height="{DynamicResource TitleBtnSize}"
+                                Cursor="Hand" Margin="4,0,0,0" Click="CloseBtn_Click" ToolTip="Close">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="Bd" CornerRadius="10"
@@ -116,7 +120,7 @@
                                             BorderBrush="{StaticResource GlassBorderBrush}"
                                             BorderThickness="1">
                                         <TextBlock Text="✕" Foreground="{StaticResource TextMutedBrush}"
-                                                   FontSize="12"
+                                                   FontSize="{DynamicResource FontMD}"
                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
@@ -131,7 +135,7 @@
                 </Grid>
 
                 <!-- ── RESPONSIVE CONTENT GRID ── -->
-                <Grid Grid.Row="1" Margin="28,4,28,20">
+                <Grid Grid.Row="1" Margin="{DynamicResource ContentMargin}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>                <!-- Header title  -->
                         <RowDefinition Height="Auto"/>                <!-- Subtitle       -->
@@ -142,7 +146,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- HEADER -->
-                    <TextBlock Grid.Row="0" FontSize="28" FontWeight="Bold" Margin="0,4,0,2">
+                    <TextBlock Grid.Row="0" FontSize="{DynamicResource FontXXL}" FontWeight="Bold" Margin="0,4,0,2">
                         <TextBlock.Foreground>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                 <GradientStop Color="{StaticResource AccentPurple}" Offset="0"/>
@@ -154,7 +158,7 @@
                     <TextBlock Grid.Row="1"
                                Text="Paste Fatura Subject lines below — each line becomes a search condition."
                                Foreground="{StaticResource TextMutedBrush}"
-                               FontSize="13" Margin="0,0,0,12"/>
+                               FontSize="{DynamicResource FontMD}" Margin="0,0,0,12"/>
 
                     <!-- ── INPUT PANEL ── -->
                     <Border Grid.Row="2" Style="{StaticResource GlassPanel}" Margin="0,0,0,12">
@@ -164,7 +168,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="INPUT" FontSize="10" FontWeight="Bold"
+                            <TextBlock Grid.Row="0" Text="INPUT" FontSize="{DynamicResource FontXS}" FontWeight="Bold"
                                        Foreground="{StaticResource TextMutedBrush}"
                                        Margin="2,0,0,10"/>
                             <TextBox Grid.Row="1" x:Name="InputBox"
@@ -178,7 +182,7 @@
                             <TextBlock Grid.Row="2" x:Name="LineCountText"
                                        Text="0 lines"
                                        Foreground="{StaticResource TextMutedBrush}"
-                                       FontSize="11" Margin="4,8,0,0"/>
+                                       FontSize="{DynamicResource FontSM}" Margin="4,8,0,0"/>
                         </Grid>
                     </Border>
 
@@ -211,16 +215,16 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="OUTPUT" FontSize="10" FontWeight="Bold"
+                                <TextBlock Text="OUTPUT" FontSize="{DynamicResource FontXS}" FontWeight="Bold"
                                            Foreground="{StaticResource TextMutedBrush}"
                                            VerticalAlignment="Center"
                                            Margin="2,0,0,0"/>
                                 <Button Grid.Column="1"
                                         Style="{StaticResource SecondaryButton}"
-                                        Padding="16,8" Click="CopyBtn_Click">
+                                        Padding="{DynamicResource PadCopyBtn}" Click="CopyBtn_Click">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="📋" FontSize="13" Margin="0,0,6,0"/>
-                                        <TextBlock x:Name="CopyBtnText" Text="Copy" FontSize="12"
+                                        <TextBlock Text="📋" FontSize="{DynamicResource FontMD}" Margin="0,0,6,0"/>
+                                        <TextBlock x:Name="CopyBtnText" Text="Copy" FontSize="{DynamicResource FontMD}"
                                                    Foreground="{StaticResource TextPrimaryBrush}"/>
                                     </StackPanel>
                                 </Button>
@@ -236,7 +240,7 @@
                     </Border>
 
                     <!-- ── STATS BAR ── -->
-                    <Border Grid.Row="5" Style="{StaticResource GlassPanel}" Padding="16,12">
+                    <Border Grid.Row="5" Style="{StaticResource GlassPanel}" Padding="{DynamicResource PadPanelStats}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -244,10 +248,10 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                                <TextBlock Text="Lines" FontSize="10"
+                                <TextBlock Text="Lines" FontSize="{DynamicResource FontXS}"
                                            Foreground="{StaticResource TextMutedBrush}"
                                            HorizontalAlignment="Center"/>
-                                <TextBlock x:Name="StatLines" Text="0" FontSize="20" FontWeight="Bold"
+                                <TextBlock x:Name="StatLines" Text="0" FontSize="{DynamicResource FontXL}" FontWeight="Bold"
                                            HorizontalAlignment="Center">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="{StaticResource AccentPurple}"/>
@@ -255,10 +259,10 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                                <TextBlock Text="Conditions" FontSize="10"
+                                <TextBlock Text="Conditions" FontSize="{DynamicResource FontXS}"
                                            Foreground="{StaticResource TextMutedBrush}"
                                            HorizontalAlignment="Center"/>
-                                <TextBlock x:Name="StatConditions" Text="0" FontSize="20" FontWeight="Bold"
+                                <TextBlock x:Name="StatConditions" Text="0" FontSize="{DynamicResource FontXL}" FontWeight="Bold"
                                            HorizontalAlignment="Center">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="{StaticResource AccentCyan}"/>
@@ -266,10 +270,10 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                                <TextBlock Text="Characters" FontSize="10"
+                                <TextBlock Text="Characters" FontSize="{DynamicResource FontXS}"
                                            Foreground="{StaticResource TextMutedBrush}"
                                            HorizontalAlignment="Center"/>
-                                <TextBlock x:Name="StatChars" Text="0" FontSize="20" FontWeight="Bold"
+                                <TextBlock x:Name="StatChars" Text="0" FontSize="{DynamicResource FontXL}" FontWeight="Bold"
                                            HorizontalAlignment="Center">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="{StaticResource AccentPink}"/>
@@ -300,7 +304,7 @@
                                           Color="#80000000" Opacity="0.5"/>
                     </Border.Effect>
                     <TextBlock x:Name="SnackbarText"
-                               Text="" FontSize="13" FontWeight="SemiBold"
+                               Text="" FontSize="{DynamicResource FontMD}" FontWeight="SemiBold"
                                Foreground="White"/>
                 </Border>
 
