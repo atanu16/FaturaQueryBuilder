@@ -19,6 +19,11 @@ public partial class MainWindow : Window
         var iconPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "icon.ico");
         if (System.IO.File.Exists(iconPath))
             Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri(iconPath));
+
+        // Size the window relative to the screen so it looks consistent at any resolution
+        var screen = SystemParameters.WorkArea;
+        Width  = Math.Max(MinWidth,  screen.Width  * 0.50);
+        Height = Math.Max(MinHeight, screen.Height * 0.85);
     }
 
     // ══════════════════════════════════════════════════════════════

@@ -2,8 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Fatura Query Builder"
-        Width="820" Height="780"
-        MinWidth="620" MinHeight="660"
+        MinWidth="520" MinHeight="560"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -131,145 +130,156 @@
                     </StackPanel>
                 </Grid>
 
-                <!-- ── SCROLLABLE CONTENT ── -->
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled" Padding="28,4,28,28">
-                    <StackPanel>
+                <!-- ── RESPONSIVE CONTENT GRID ── -->
+                <Grid Grid.Row="1" Margin="28,4,28,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>                <!-- Header title  -->
+                        <RowDefinition Height="Auto"/>                <!-- Subtitle       -->
+                        <RowDefinition Height="2*" MinHeight="120"/> <!-- Input panel    -->
+                        <RowDefinition Height="Auto"/>                <!-- Buttons        -->
+                        <RowDefinition Height="3*" MinHeight="100"/> <!-- Output panel   -->
+                        <RowDefinition Height="Auto"/>                <!-- Stats bar      -->
+                    </Grid.RowDefinitions>
 
-                        <!-- HEADER -->
-                        <TextBlock FontSize="28" FontWeight="Bold" Margin="0,4,0,2">
-                            <TextBlock.Foreground>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                    <GradientStop Color="{StaticResource AccentPurple}" Offset="0"/>
-                                    <GradientStop Color="{StaticResource AccentCyan}"   Offset="1"/>
-                                </LinearGradientBrush>
-                            </TextBlock.Foreground>
-                            Fatura Query Builder
-                        </TextBlock>
-                        <TextBlock Text="Paste Fatura Subject lines below — each line becomes a search condition."
-                                   Foreground="{StaticResource TextMutedBrush}"
-                                   FontSize="13" Margin="0,0,0,22"/>
+                    <!-- HEADER -->
+                    <TextBlock Grid.Row="0" FontSize="28" FontWeight="Bold" Margin="0,4,0,2">
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="{StaticResource AccentPurple}" Offset="0"/>
+                                <GradientStop Color="{StaticResource AccentCyan}"   Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                        Fatura Query Builder
+                    </TextBlock>
+                    <TextBlock Grid.Row="1"
+                               Text="Paste Fatura Subject lines below — each line becomes a search condition."
+                               Foreground="{StaticResource TextMutedBrush}"
+                               FontSize="13" Margin="0,0,0,12"/>
 
-                        <!-- ── INPUT PANEL ── -->
-                        <Border Style="{StaticResource GlassPanel}" Margin="0,0,0,18">
-                            <StackPanel>
-                                <TextBlock Text="INPUT" FontSize="10" FontWeight="Bold"
-                                           Foreground="{StaticResource TextMutedBrush}"
-                                           Margin="2,0,0,10"/>
-                                <TextBox x:Name="InputBox"
-                                         Style="{StaticResource GlassTextBox}"
-                                         Height="160"
-                                         VerticalScrollBarVisibility="Auto"
-                                         AcceptsReturn="True"
-                                         TextWrapping="Wrap"
-                                         Text=""
-                                         TextChanged="InputBox_TextChanged"/>
-                                <TextBlock x:Name="LineCountText"
-                                           Text="0 lines"
-                                           Foreground="{StaticResource TextMutedBrush}"
-                                           FontSize="11" Margin="4,8,0,0"/>
-                            </StackPanel>
-                        </Border>
-
-                        <!-- ── CONVERT BUTTON ── -->
-                        <Grid Margin="0,0,0,18">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Button Content="⚡  Generate Fatura Query"
-                                    Style="{StaticResource PrimaryButton}"
-                                    Click="GenerateBtn_Click"
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Stretch"/>
-                            <Button Content="🗑  Clear"
-                                    Style="{StaticResource SecondaryButton}"
-                                    Click="ClearBtn_Click"
-                                    Grid.Column="1" Margin="10,0,0,0"/>
+                    <!-- ── INPUT PANEL ── -->
+                    <Border Grid.Row="2" Style="{StaticResource GlassPanel}" Margin="0,0,0,12">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="INPUT" FontSize="10" FontWeight="Bold"
+                                       Foreground="{StaticResource TextMutedBrush}"
+                                       Margin="2,0,0,10"/>
+                            <TextBox Grid.Row="1" x:Name="InputBox"
+                                     Style="{StaticResource GlassTextBox}"
+                                     VerticalAlignment="Stretch"
+                                     VerticalScrollBarVisibility="Auto"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Text=""
+                                     TextChanged="InputBox_TextChanged"/>
+                            <TextBlock Grid.Row="2" x:Name="LineCountText"
+                                       Text="0 lines"
+                                       Foreground="{StaticResource TextMutedBrush}"
+                                       FontSize="11" Margin="4,8,0,0"/>
                         </Grid>
+                    </Border>
 
-                        <!-- ── OUTPUT PANEL ── -->
-                        <Border Style="{StaticResource GlassPanel}" Margin="0,0,0,10">
-                            <StackPanel>
-                                <Grid Margin="0,0,0,10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="OUTPUT" FontSize="10" FontWeight="Bold"
-                                               Foreground="{StaticResource TextMutedBrush}"
-                                               VerticalAlignment="Center"
-                                               Margin="2,0,0,0"/>
-                                    <Button Grid.Column="1"
-                                            Style="{StaticResource SecondaryButton}"
-                                            Padding="16,8" Click="CopyBtn_Click">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="📋" FontSize="13" Margin="0,0,6,0"/>
-                                            <TextBlock x:Name="CopyBtnText" Text="Copy" FontSize="12"
-                                                       Foreground="{StaticResource TextPrimaryBrush}"/>
-                                        </StackPanel>
-                                    </Button>
-                                </Grid>
-                                <TextBox x:Name="OutputBox"
-                                         Style="{StaticResource GlassTextBox}"
-                                         Height="120"
-                                         IsReadOnly="True"
-                                         VerticalScrollBarVisibility="Auto"
-                                         TextWrapping="Wrap"
-                                         Text=""/>
-                            </StackPanel>
-                        </Border>
+                    <!-- ── CONVERT BUTTON ── -->
+                    <Grid Grid.Row="3" Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="⚡  Generate Fatura Query"
+                                Style="{StaticResource PrimaryButton}"
+                                Click="GenerateBtn_Click"
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"/>
+                        <Button Content="🗑  Clear"
+                                Style="{StaticResource SecondaryButton}"
+                                Click="ClearBtn_Click"
+                                Grid.Column="1" Margin="10,0,0,0"/>
+                    </Grid>
 
-                        <!-- ── STATS BAR ── -->
-                        <Border Style="{StaticResource GlassPanel}" Padding="16,12" Margin="0,0,0,8">
-                            <Grid>
+                    <!-- ── OUTPUT PANEL ── -->
+                    <Border Grid.Row="4" Style="{StaticResource GlassPanel}" Margin="0,0,0,12">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Margin="0,0,0,10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-
-                                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                                    <TextBlock Text="Lines" FontSize="10"
-                                               Foreground="{StaticResource TextMutedBrush}"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock x:Name="StatLines" Text="0" FontSize="20" FontWeight="Bold"
-                                               HorizontalAlignment="Center">
-                                        <TextBlock.Foreground>
-                                            <SolidColorBrush Color="{StaticResource AccentPurple}"/>
-                                        </TextBlock.Foreground>
-                                    </TextBlock>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                                    <TextBlock Text="Conditions" FontSize="10"
-                                               Foreground="{StaticResource TextMutedBrush}"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock x:Name="StatConditions" Text="0" FontSize="20" FontWeight="Bold"
-                                               HorizontalAlignment="Center">
-                                        <TextBlock.Foreground>
-                                            <SolidColorBrush Color="{StaticResource AccentCyan}"/>
-                                        </TextBlock.Foreground>
-                                    </TextBlock>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                                    <TextBlock Text="Characters" FontSize="10"
-                                               Foreground="{StaticResource TextMutedBrush}"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock x:Name="StatChars" Text="0" FontSize="20" FontWeight="Bold"
-                                               HorizontalAlignment="Center">
-                                        <TextBlock.Foreground>
-                                            <SolidColorBrush Color="{StaticResource AccentPink}"/>
-                                        </TextBlock.Foreground>
-                                    </TextBlock>
-                                </StackPanel>
+                                <TextBlock Text="OUTPUT" FontSize="10" FontWeight="Bold"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           VerticalAlignment="Center"
+                                           Margin="2,0,0,0"/>
+                                <Button Grid.Column="1"
+                                        Style="{StaticResource SecondaryButton}"
+                                        Padding="16,8" Click="CopyBtn_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="📋" FontSize="13" Margin="0,0,6,0"/>
+                                        <TextBlock x:Name="CopyBtnText" Text="Copy" FontSize="12"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    </StackPanel>
+                                </Button>
                             </Grid>
-                        </Border>
+                            <TextBox Grid.Row="1" x:Name="OutputBox"
+                                     Style="{StaticResource GlassTextBox}"
+                                     VerticalAlignment="Stretch"
+                                     IsReadOnly="True"
+                                     VerticalScrollBarVisibility="Auto"
+                                     TextWrapping="Wrap"
+                                     Text=""/>
+                        </Grid>
+                    </Border>
 
-                    </StackPanel>
-                </ScrollViewer>
+                    <!-- ── STATS BAR ── -->
+                    <Border Grid.Row="5" Style="{StaticResource GlassPanel}" Padding="16,12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                                <TextBlock Text="Lines" FontSize="10"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           HorizontalAlignment="Center"/>
+                                <TextBlock x:Name="StatLines" Text="0" FontSize="20" FontWeight="Bold"
+                                           HorizontalAlignment="Center">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{StaticResource AccentPurple}"/>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                                <TextBlock Text="Conditions" FontSize="10"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           HorizontalAlignment="Center"/>
+                                <TextBlock x:Name="StatConditions" Text="0" FontSize="20" FontWeight="Bold"
+                                           HorizontalAlignment="Center">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{StaticResource AccentCyan}"/>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                                <TextBlock Text="Characters" FontSize="10"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           HorizontalAlignment="Center"/>
+                                <TextBlock x:Name="StatChars" Text="0" FontSize="20" FontWeight="Bold"
+                                           HorizontalAlignment="Center">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{StaticResource AccentPink}"/>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                </Grid>
 
                 <!-- ── SNACKBAR OVERLAY ── -->
                 <Border x:Name="SnackbarContainer"
