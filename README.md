@@ -52,7 +52,7 @@ cd QueryBuilder
 dotnet run
 
 # — OR build a standalone EXE —
-dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
+dotnet publish QueryBuilder.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish
 # Output: bin/Release/net8.0-windows/win-x64/publish/QueryBuilder.exe
 ```
 
